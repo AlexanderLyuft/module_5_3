@@ -1,5 +1,7 @@
 # Домашняя работа по уроку "Перегрузка операторов."
 
+# Исправленый
+
 class House:
     houses_history = []
     def __init__(self, name, number_of_floors):
@@ -20,32 +22,41 @@ class House:
                 print(i)
 
     def __eq__(self, other):
-        return self.number_of_floors == other.number_of_floors
+        if isinstance(other.number_of_floors, int) and isinstance(other, House):
+            return self.number_of_floors == other.number_of_floors
 
     def __lt__(self, other):
-        return self.number_of_floors < other.number_of_floors
+        if isinstance(other.number_of_floors, int) and isinstance(other, House):
+            return self.number_of_floors < other.number_of_floors
 
     def __le__(self, other):
-        return self.number_of_floors <= other.number_of_floors
+        if isinstance(other.number_of_floors, int) and isinstance(other, House):
+            return self.number_of_floors <= other.number_of_floors
 
     def __gt__(self, other):
-        return self.number_of_floors > other.number_of_floors
+        if isinstance(other.number_of_floors, int) and isinstance(other, House):
+            return self.number_of_floors > other.number_of_floors
 
     def __ge__(self, other):
-        return self.number_of_floors >= other.number_of_floors
+        if isinstance(other.number_of_floors, int) and isinstance(other, House):
+            return self.number_of_floors >= other.number_of_floors
 
     def __ne__(self, other):
-        return self.number_of_floors != other.number_of_floors
+        if isinstance(other.number_of_floors, int) and isinstance(other, House):
+            return self.number_of_floors != other.number_of_floors
 
     def __add__(self, value):
-        self.number_of_floors = self.number_of_floors + value
+        if isinstance(value, int):
+            self.number_of_floors = self.number_of_floors + value
         return self
 
     def __iadd__(self, value):
-        return House.__add__(self, value)
+        if isinstance(value, int):
+            return House.__add__(self, value)
 
     def __radd__(self, value):
-        return House.__add__(self, value)
+        if isinstance(value, int):
+            return House.__add__(self, value)
 
 h1 = House('ЖК Эльбрус', 10)
 h2 = House('ЖК Акация', 20)
